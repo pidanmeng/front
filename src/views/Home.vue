@@ -1,8 +1,7 @@
-<template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+<template lang="pug">
+  .home
+    img(alt="Vue logo" src="@/assets/logo.png" @click="get")
+    hello-world
 </template>
 
 <script>
@@ -13,6 +12,14 @@ export default {
   name: 'home',
   components: {
     HelloWorld
+  },
+  methods:{
+      get:function(){
+          this.axios.get('/api/users')
+              .then(res=>{
+                  console.log(res)
+              })
+      }
   }
 }
 </script>
