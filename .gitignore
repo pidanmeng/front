@@ -19,3 +19,6 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
+src/assets/logo.psd
+src/assets/logo.raw.png
+src/assets/logo.txt
