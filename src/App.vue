@@ -1,31 +1,28 @@
 <template lang="pug">
   #app
     #nav
-      router-link(to="/") Home
-      span  |
-      router-link(to="/about") About
-    router-view
+    router-view#content
 </template>
 
 <style lang="scss">
+body{
+    margin: 0;
+}
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: $mainColor;
-
-    &.router-link-exact-active {
-      color: #42b983;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: flex;
+    color: $textColor;
+    background-color: $bg;
+    height: 100vh;
+    #nav {
+        flex-grow: 1;
     }
-  }
+    #content{
+        flex-grow: 1;
+    }
 }
+
+
 </style>

@@ -1,6 +1,5 @@
 @charset "UTF-8";
 $bg: #131417;
-$compomentBg: #1e1f26;
 $black: #1f2229;
 $white: #aaaebc;
 $blue: #0ebeff;
@@ -11,5 +10,9 @@ $yellow: #ffdd40;
 $brightYellow: #ffeb8d;
 $red: #cf4747;
 $brightRed: #cf8d8d;
-$mainColor: #cf4747;
+
+$mainColor: $red;
+$brightMainColor: $brightRed;
+$compomentBg: $black;
+$textColor: $white;
 
