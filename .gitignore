@@ -22,3 +22,5 @@ yarn-error.log*
 src/assets/logo.psd
 src/assets/logo.raw.png
 src/assets/logo.txt
+src/assets/common.css.map
+src/assets/common.css
