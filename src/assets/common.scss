@@ -1,7 +1,10 @@
 @charset "UTF-8";
 $bg: #131417;
+$darkBlack: #171819;
 $black: #1f2229;
-$white: #aaaebc;
+$brightBlack: #22252c;
+$gray: #80838a;
+$white: #e8f0fe;
 $blue: #0ebeff;
 $brightBlue: #8ee0ff;
 $green: #47cf73;
@@ -9,10 +12,15 @@ $brightGreen: #8effe0;
 $yellow: #ffdd40;
 $brightYellow: #ffeb8d;
 $red: #cf4747;
-$brightRed: #cf8d8d;
+$brightRed: #cf5555;
 
 $mainColor: $red;
 $brightMainColor: $brightRed;
 $compomentBg: $black;
 $textColor: $white;
+
+@mixin anime($duration:0.5s){
+  transition: all $duration ease-out;
+}
+
 

@@ -1,6 +1,5 @@
 <template lang="pug">
   #app
-    #nav
     router-view#content
 </template>
 
@@ -16,11 +15,10 @@ body{
     color: $textColor;
     background-color: $bg;
     height: 100vh;
-    #nav {
-        flex-grow: 1;
-    }
+    align-items: center;
+    text-align: center;
     #content{
-        flex-grow: 1;
+        width: 100%;
     }
 }
 

@@ -1,17 +1,17 @@
 <template lang="pug">
   .home
     img(alt="Vue logo" src="@/assets/logo.png" @click="get")
-    hello-world
+    LoginItem
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import LoginItem from '@/components/LoginItem'
 
 export default {
   name: 'home',
   components: {
-    HelloWorld
+      LoginItem
   },
   methods:{
       get:function(){
