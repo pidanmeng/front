@@ -15,7 +15,6 @@ body{
     color: $textColor;
     background-color: $bg;
     height: 100vh;
-    align-items: center;
     text-align: center;
     #content{
         width: 100%;

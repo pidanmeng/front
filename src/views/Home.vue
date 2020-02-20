@@ -23,3 +23,12 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+    img[alt="Vue logo"]{
+        width: 30%;
+        margin-top: 14rem;
+        margin-bottom: 2rem;
+    }
+
+</style>

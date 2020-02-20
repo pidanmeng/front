@@ -7,6 +7,8 @@
             input.userPw(name="userPw", type="password", v-model="formUserPwd")
             span.lock
                 icon.icon(name="lock")
+            svg.line
+                rect(rx="0.5rem", ry="0.5rem")
         div.button
             button.submit.login(:class="{ready:formReadyToSubmit}", :disabled="!formReadyToSubmit", @click="login" type="button") {{formSubmitText}}
     //form
@@ -51,11 +53,12 @@
         justify-content: center;
         align-items: center;
         .form{
+            position: relative;
             flex: 1;
             width: 25rem;
             display: flex;
             justify-content: center;
-            box-shadow: 0 0.5rem 0.75rem -0.75rem $gray;
+            box-shadow: 0 0.5rem 0.75rem -0.75rem $shadowColor;
             .user{
                 order: -1;
                 & + input{
@@ -66,6 +69,7 @@
                 order: 0;
             }
             input{
+                z-index: 2;
                 @include anime;
                 flex: 1;
                 min-width: 10rem;
@@ -85,7 +89,7 @@
                 text-shadow: #0ebeff;
                 &:focus{
                     border-width: 0;
-                    background-color: $brightBlack;
+                    background-color: $borderColor;
                     box-shadow: 0 0.5rem 0.5rem -0.4rem $gray;
                     & + span{
                         .icon{
@@ -93,14 +97,52 @@
                         }
                     }
                 }
+                &:-webkit-autofill{
+                    &, &:hover, &:focus, &:active{
+                        -webkit-transition-delay: 99999s;
+                        -webkit-transition: color 99999s ease-out, background-color 99999s ease-out;
+                    }
+                }
                 &[type="text"]{
                     border-radius: 0.5rem 0 0 0.5rem;
+                    &:focus ~ svg.line{
+                        rect{
+                            stroke-dasharray: 17.5rem 42.5rem;
+                            stroke-dashoffset: 5.5rem;
+                        }
+                    }
                 }
                 &[type="password"]{
                     border-radius: 0 0.5rem 0.5rem 0;
+                    &:focus ~ svg.line{
+                        rect{
+                            stroke-dasharray: 17.5rem 42.5rem;
+                            stroke-dashoffset: -12rem;
+                        }
+                    }
+                }
+            }
+            svg.line{
+                z-index: 3;
+                flex: none;
+                pointer-events: none;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                border-radius: 0.5rem 0.5rem 0 0;
+                rect{
+                    @include anime;
+                    height: 110%;
+                    width: 100%;
+                    fill: none;
+                    stroke: $mainColor;
+                    stroke-width: 4px;
+                    stroke-dasharray: 0 60rem;
+                    stroke-dashoffset: -12rem;
                 }
             }
             span{
+                z-index: 2;
                 width: 0;
                 height: 100%;
                 display: flex;
@@ -112,13 +154,6 @@
                     transform: scale(1.5);
                     @include anime(0.2s);
                 }
-                &:has(+ input){
-                    .icon{
-                        color: $mainColor;
-                    }
-
-                    display: block;
-                }
             }
         }
         .button{
@@ -127,6 +162,7 @@
             display: flex;
             button{
                 @include anime(0.2s);
+                outline: 0;
                 flex: 1;
                 border: {
                     width: 0;
