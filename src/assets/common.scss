@@ -2,24 +2,27 @@
 $bg: #131417;
 $darkBlack: #171819;
 $black: #1f2229;
-$brightBlack: #292c33;
+$brightBlack: #2c2f3a;
 $gray: #80838a;
-$white: #e8f0fe;
+$white: #e4ecc5;
 $blue: #0ebeff;
 $brightBlue: #8ee0ff;
 $green: #47cf73;
 $brightGreen: #8effe0;
-$yellow: #ffdd40;
-$brightYellow: #ffeb8d;
-$red: #cf4747;
-$brightRed: #cf5555;
+$yellow: #f7d51f;
+$brightYellow: #ebe772;
+$red: #f14f54;
+$orange: #f7903e;
+$brightRed: #f9575c;
 
 $mainColor: $red;
 $brightMainColor: $brightRed;
-$compomentBg: $black;
-$textColor: $white;
-$shadowColor: $gray;
-$borderColor: $brightBlack;
+$componentBg: $black;
+$selectedComponent: $brightBlack;
+$textColor: white;
+$shadowColor: $white;
+$borderColor: $orange;
+$selectionColor: $brightRed;
 
 @mixin anime($duration:0.5s){
   transition: all $duration ease-out;

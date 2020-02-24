@@ -4,6 +4,12 @@
 </template>
 
 <style lang="scss">
+*{
+    &::selection{
+        color: $selectionColor;
+        font-size: 0.1;
+    }
+}
 body{
     margin: 0;
 }
@@ -20,6 +26,23 @@ body{
         width: 100%;
     }
 }
-
-
 </style>
+
+<script>
+    export default {
+        name: "App",
+        data: ()=>{
+            return{}
+        },
+        async mounted() {
+            await this.checkLogin();
+        },
+        methods: {
+            async checkLogin() {
+                console.log(`checkLogin`);
+                let res = await this.axios.get('/api/users/checkLogin');
+                this.$store.commit("setUserInfo", res.data.userInfo);
+            }
+        }
+    }
+</script>

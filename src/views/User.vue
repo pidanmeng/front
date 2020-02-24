@@ -1,10 +1,19 @@
-<template>
-
+<template lang="pug">
+    p {{userId}}
 </template>
 
 <script>
     export default {
-        name: "User"
+        name: "User",
+        data: ()=>{
+            return{}
+        },
+        computed: {
+            userId() {
+                console.log(this.$store.state.userStatus.userInfo.userId);
+                return this.$store.state.userStatus.userInfo.userId;
+            }
+        }
     }
 </script>
 
