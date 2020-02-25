@@ -40,7 +40,7 @@
         },
         methods: {
             login(){
-                this.axios.post('api/users/login',{
+                this.axios.post('/api/users/login',{
                     userId: this.formUserId,
                     userPwd: this.formUserPwd
                 }).then((res)=>{
@@ -108,7 +108,7 @@
                 &:focus{
                     border-width: 0;
                     background-color: $selectedComponent;
-                    box-shadow: 0 0.5rem 0.5rem -0.4rem $gray;
+                    box-shadow: 0 0.5rem 0.5rem -0.4rem $shadowColor;
                     & + span{
                         .icon{
                             color: $mainColor;

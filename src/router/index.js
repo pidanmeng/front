@@ -30,7 +30,14 @@ const routes = [
   {
     path: '/user/:userId',
     name: 'user',
-    component: () => import('@/views/User')
+    component: () => import('@/views/User'),
+    children: [
+      {
+        path: 'foo',
+        name: 'foo',
+        component: ()=> import('@/views/User')
+      }
+    ]
   }
 ];
 

@@ -1,10 +1,14 @@
 <template lang="pug">
-    p {{userId}}
+    .content
+        SideBar.sideBar(:title="'haha'")
+    //p
 </template>
 
 <script>
+    import SideBar from '@/components/SideBar';
     export default {
         name: "User",
+        components: {SideBar},
         data: ()=>{
             return{}
         },
@@ -17,6 +21,9 @@
     }
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+    .sideBar{
+        width: 15vw;
+        height: 100vh;
+    }
 </style>
