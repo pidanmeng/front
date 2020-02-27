@@ -19,9 +19,9 @@ $mainColor: $red;
 $brightMainColor: $brightRed;
 $componentBg: $black;
 $selectedComponent: $brightBlack;
-$textColor: white;
+$textColor: #adafbc;
 $shadowColor: black;
-$borderColor: $orange;
+$borderColor: #464a5270;
 $selectionColor: $brightRed;
 
 @mixin anime($duration:0.5s){

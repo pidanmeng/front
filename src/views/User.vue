@@ -1,6 +1,6 @@
 <template lang="pug">
     .content
-        SideBar.sideBar(:title="'haha'")
+        SideBar.sideBar
     //p
 </template>
 
@@ -23,7 +23,7 @@
 
 <style scoped lang="scss">
     .sideBar{
-        width: 15vw;
+        width: 250px;
         height: 100vh;
     }
 </style>

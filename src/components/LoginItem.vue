@@ -3,12 +3,12 @@
         div.form
             input.userId(name="userId", type="text", v-model="formUserId", required)
             span.user
-                icon.icon(name="user")
+                icon.icon(name="user", scale="1.5")
             span
                 p Username
             input.userPw(name="userPw", type="password", v-model="formUserPwd", required)
             span.lock
-                icon.icon(name="lock")
+                icon.icon(name="lock", scale="1.5")
             span
                 p Password
             svg.line
@@ -103,7 +103,7 @@
                     family: 'dengxian', Helvetica, Arial, sans-serif;
                     size: 1.5rem;
                 };
-                text-indent: 2.5rem;
+                text-indent: 3rem;
                 text-shadow: #0ebeff;
                 &:focus{
                     border-width: 0;
@@ -188,7 +188,6 @@
                     position: relative;
                     margin-left: 1rem;
                     width: 2rem;
-                    transform: scale(1.5);
                     @include anime(0.2s);
                 }
                 & + span{
