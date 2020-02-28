@@ -22,18 +22,21 @@
                     .block(v-if="group.groupItems")
                         p.groupTitle.row {{group.groupName}}
                         .groupItem(v-for="item in group.groupItems")
-                            .groupSubTitle.row(v-if="!item.children" @click="item.method" class="clickable")
-                                i
-                                    icon(:name="item.icon")
-                                p.row {{item.itemName}}
+                            .block
+                                .groupSubTitle.row(v-if="!item.children" @click="item.method" class="clickable")
+                                    i
+                                        icon(:name="item.icon")
+                                    p.row {{item.itemName}}
                             .block(:key="item.index" v-if="item.children" :class="{showChildren:currentIndex === item.index}" )
                                 .groupSubTitle.row(@click="switchIndex(item.index)" :class="{clickable:true}")
                                     i
                                         icon(:name="item.icon")
                                     p.row {{item.itemName}}
                                     icon.arrow(name="chevron-right" scale=0.75)
-                                .itemChild(v-for="child in item.children")
-                                    .row(@click="child.method") {{child.name}}
+                                .children
+                                    .itemChild(v-for="child in item.children")
+                                        //icon(name="asterisk")
+                                        .row.clickable(@click="child.method") {{child.name}}
 
             .sideBarFoot
                 .icon(v-for="icon in icons" @click="icon.method")
@@ -93,6 +96,54 @@
                             groupItems: [
                                 {
                                     index: 1,
+                                    itemName: "Posts",
+                                    icon: "keyboard",
+                                    method: () => {},
+                                    children: [
+                                        {
+                                            name: "Markdown Editor",
+                                            method: () => {}
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            groupName: "General",
+                            method: ()=> {},
+                            groupItems: [
+                                {
+                                    index: 2,
+                                    itemName: "Posts",
+                                    icon: "keyboard",
+                                    method: () => {},
+                                    children: [
+                                        {
+                                            name: "Markdown Editor",
+                                            method: () => {}
+                                        },
+                                        {
+                                            name: "Markdown Editor",
+                                            method: () => {}
+                                        },
+                                        {
+                                            name: "Markdown Editor",
+                                            method: () => {}
+                                        },
+                                        {
+                                            name: "Markdown Editor",
+                                            method: () => {}
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            groupName: "General",
+                            method: ()=> {},
+                            groupItems: [
+                                {
+                                    index: 3,
                                     itemName: "Posts",
                                     icon: "keyboard",
                                     method: () => {},
@@ -313,12 +364,41 @@
                         }
                         .groupSubTitle{
                             margin: 0 1rem;
+                            p{
+                                @include anime(.2s);
+                            }
+                            i{
+                                svg{
+                                    @include anime(.2s);
+                                }
+                            }
+                            &:hover{
+                                i{
+                                    svg{
+                                        @include animation(swing .5s);
+                                        color: $mainColor;
+                                        filter: drop-shadow(0 0 5px $mainColor);
+                                    }
+                                }
+                                p{
+                                    color: white;
+                                }
+                            }
                         }
                         .itemChild{
                             div{
+                                @include anime(.2s);
                                 display: flex;
                                 align-items: center;
-                                justify-content: center;
+                                justify-content: flex-start;
+                                padding-left: 2rem;
+                            }
+                            &:hover{
+                                div{
+                                    letter-spacing: 3px;
+                                }
+                                background-color: $yellow;
+                                color: $componentBg;
                             }
                         }
                     }
@@ -331,7 +411,7 @@
                         }
                     }
                     .itemChild{
-                        @include anime(.2s);
+                        @include anime(background .2s);
                         background-color: $selectedComponent;
                         height: 0;
                         overflow: hidden;

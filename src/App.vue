@@ -18,6 +18,7 @@
 body{
     margin: 0;
 }
+@include swing;
 ::-webkit-scrollbar {
     width: 5px;
     height: 7px;
