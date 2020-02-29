@@ -33,9 +33,9 @@ const routes = [
     component: () => import('@/views/User'),
     children: [
       {
-        path: 'foo',
-        name: 'foo',
-        component: ()=> import('@/views/User')
+        path: 'article_editor',
+        name: 'article_editor',
+        component: ()=> import('@/components/MavonEditor')
       }
     ]
   }

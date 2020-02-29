@@ -186,6 +186,7 @@
         methods: {
             toggle(){
                 this.hide = !this.hide;
+                this.$emit('sideBarClosed', this.hide);
             },
             switchIndex(index){
                 this.currentIndex = this.currentIndex===index? -1: index;
@@ -397,7 +398,7 @@
                                 div{
                                     letter-spacing: 3px;
                                 }
-                                background-color: $yellow;
+                                background-color: $brightYellow;
                                 color: $componentBg;
                             }
                         }

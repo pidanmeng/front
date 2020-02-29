@@ -1,6 +1,9 @@
+
+
 <template lang="pug">
-    .content
-        SideBar.sideBar(v-bind="sideBarData")
+    div
+        SideBar.sideBar(v-bind="sideBarData", @sideBarClosed="sideBarClosed")
+        router-view.content(:class="{fullDisplay: hideSideBar}")
     //p
 </template>
 
@@ -11,14 +14,19 @@
         components: {SideBar},
         data:() => {
             return{
-                sideBarData: {}
+                sideBarData: {},
+                hideSideBar: false
             }
         },
-        method: {
+        methods: {
             routeFac(path){
                 return function () {
                     this.$router.push(path);
                 }
+            },
+            sideBarClosed(hide){
+                this.hideSideBar = hide;
+                console.log(this.hideSideBar);
             }
         },
         computed: {
@@ -44,7 +52,7 @@
                                 children: [
                                     {
                                         name: 'Markdown Editor',
-                                        method(){_this.$router.push('article_editor')}
+                                        method(){_this.$router.push({name: 'article_editor'})}
                                     },
                                     {
                                         name: 'History',
@@ -133,7 +141,17 @@
 
 <style scoped lang="scss">
     .sideBar{
+        position: fixed;
         width: 250px;
         height: 100vh;
+    }
+    .content{
+        @include anime(.5s);
+        padding-left: 250px;
+        height: 100vh;
+        overflow: scroll;
+        &.fullDisplay{
+            padding-left: 0;
+        }
     }
 </style>
