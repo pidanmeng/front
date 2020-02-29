@@ -81,7 +81,7 @@
                 default: () => {
                     return{
                         search: query => {
-                            console.log(query);
+                            console.log(query)
                         }
                     }
                 }

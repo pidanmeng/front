@@ -49,7 +49,7 @@
                         this.$store.commit('set_id', res.data._id);
                         this.$router.push('/user/' + this.$store.state.userStatus._id);
                     }else {
-                        console.log(res)
+                        console.log(res);
                     }
                 }).catch((err)=>{
                     alert(err);

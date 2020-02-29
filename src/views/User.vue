@@ -26,18 +26,15 @@
             },
             sideBarClosed(hide){
                 this.hideSideBar = hide;
-                console.log(this.hideSideBar);
             }
         },
         computed: {
             userId() {
-                console.log(this.$store.state.userStatus.userInfo.userId);
                 return this.$store.state.userStatus.userInfo.userId;
             }
         },
         created() {
             let _this = this;
-            console.log('userName: ' + _this.$store.state.userStatus.userInfo.userId);
             _this.sideBarData = {
                 title: '博客后台',
                 userName: _this.$store.state.userStatus.userInfo.userId,

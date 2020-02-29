@@ -18,6 +18,13 @@
 body{
     margin: 0;
 }
+a{
+    @include anime(.2s);
+    color:$brightYellow !important;
+    &:hover{
+        color: $mainColor !important;
+    }
+}
 @include swing;
 ::-webkit-scrollbar {
     width: 5px;
@@ -28,8 +35,8 @@ body{
     height: 0;
 }
 ::-webkit-scrollbar-thumb {
-    background: $selectedComponent;
-    border: 0 none #ffffff;
+    background: $borderColor !important;
+    border: 0 none $componentBg !important;
     border-radius: 0;
 }
 ::-webkit-scrollbar-thumb:hover {
@@ -40,7 +47,7 @@ body{
 }
 ::-webkit-scrollbar-track {
     background: transparent;
-    border: 0 none #ffffff;
+    border: 0 none $componentBg !important;
     border-radius: 50px;
 }
 ::-webkit-scrollbar-track:hover {
@@ -80,7 +87,6 @@ body{
         },
         methods: {
             async checkLogin() {
-                console.log(`checkLogin`);
                 let res = await this.axios.get('/api/users/checkLogin');
                 this.$store.commit("setUserInfo", res.data.userInfo);
             }
