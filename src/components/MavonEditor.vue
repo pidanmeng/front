@@ -1,24 +1,26 @@
 <template lang="pug">
     .editor
-        mavon-editor.mavon(ref='editor' v-model='doc' v-bind="mavonConf")
+        mavon-editor.mavon(ref='editor' v-model='doc' v-bind="mavonConf" @imgAdd="$imgAdd")
     //div
 </template>
 
 <script>
     import {mavonEditor} from 'mavon-editor';
     import 'mavon-editor/dist/css/index.css'
+
     export default {
         name: "MavonEditor",
         components: {mavonEditor},
         data: () => {
-            return{
-                doc: '',
+            return {
+                title: 'Title',
+                tag: ['code'],
                 mavonConf: {
                     boxShadowStyle: '#000',
                     toolbarsBackground: '#00000000',
                     editorBackground: '#00000000',
                     previewBackground: '#00000000',
-                    codeStyle: 'kimbie.dark',
+                    codeStyle: 'atom-one-dark',
                     tabSize: 4,
                     toolbars: {
                         bold: true, // 粗体
@@ -37,8 +39,6 @@
                         code: true, // code
                         table: true, // 表格
                         readmodel: true, // 沉浸式阅读
-                        htmlcode: true, // 展示html源码
-                        help: true, // 帮助
                         undo: true, // 上一步
                         redo: true, // 下一步
                         trash: true, // 清空
@@ -52,47 +52,96 @@
                     }
                 }
             }
+        },
+        computed: {
+            doc: {
+                get() {
+                    let res = `# ${this.title}\n`;
+                    for (var i of this.tag) {
+                        res += `\`${i}\``;
+                    }
+                    res += '\n';
+                    return res;
+                },
+                set(doc) {
+                    console.log(doc);
+                }
+            }
+        },
+        methods: {
+            $imgAdd(pos, $file) {
+                var data = new FormData();
+                data.append('smfile', $file);
+                data.append('ssl', true);
+                this.axios.post(
+                    '/smms/upload',
+                    data
+                ).then(doc => {
+                    let url = '';
+                    if('image_repeated'===doc.data.code){
+                        url = doc.data.images;
+                    }else if ('success'===doc.data.code){
+                        url = doc.data.data.url;
+                    }
+                    console.log(this);
+                    this.$refs.editor.$img2Url(pos, url);
+                }).catch(err=>{
+                    console.log(JSON.stringify(err))
+                })
+            }
         }
     }
 </script>
 
 <style lang="scss">
-    .editor{
+    .editor {
         display: flex;
-        .mavon{
+
+        .mavon {
             background-color: $selectedComponent;
             flex: 1;
             margin: 5rem;
-            .v-note-op{
+
+            .v-note-op {
                 border-bottom: 1px solid $borderColor;
-                .v-right-item, .v-left-item{
+
+                .v-right-item, .v-left-item {
                     border-radius: 4px 4px 0 0;
-                    .op-icon-divider{
+
+                    .op-icon-divider {
                         border-left: 1px solid $borderColor;
                     }
-                    .op-icon{
+
+                    .op-icon {
                         color: $textColor;
-                        &:hover{
+
+                        &:hover {
                             color: $mainColor;
                             background-color: $componentBg;
-                            &::before{
+
+                            &::before {
                                 text-shadow: 0 0 5px $mainColor;
                             }
                         }
-                        &.selected{
+
+                        &.selected {
                             color: $mainColor;
                             background-color: $componentBg;
-                            &::before{
+
+                            &::before {
                                 text-shadow: 0 0 5px $mainColor;
                             }
                         }
-                        .popup-dropdown{
-                            box-shadow: 0 0 6px 0 rgba(0,0,0,0.5);
+
+                        .popup-dropdown {
+                            box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
                             background-color: $componentBg;
                             border-width: 0;
-                            .dropdown-item{
+
+                            .dropdown-item {
                                 background-color: $selectedComponent;
-                                &:hover{
+
+                                &:hover {
                                     color: $mainColor;
                                     text-shadow: 0 0 5px $mainColor;
                                 }
@@ -101,65 +150,172 @@
                     }
                 }
             }
-            .v-note-panel{
-                .v-note-edit{
-                    &::-webkit-scrollbar{
+
+            .v-note-panel {
+                .v-note-navigation-wrapper {
+                    position: static;
+                    background-color: $selectedComponent;
+                    border: 0;
+                    box-shadow: -1px 0 12px $shadowColor;
+
+                    &.slideTop-enter {
+                        width: 0;
+                        height: auto;
+                    }
+
+                    &.slideTop-leave-active {
+                        width: 0;
+                        height: auto;
+                    }
+
+                    .v-note-navigation-title {
+                        color: $textColor;
+                        border-bottom: 1px solid $borderColor;
+                    }
+
+                    .v-note-navigation-content {
+                        &::-webkit-scrollbar {
+                            background-color: $componentBg !important;
+                        }
+
+                        color: $textColor;
+
+                        h1, h2, h3, h4, h5, h6 {
+                            @include anime(.2s);
+                            color: $textColor;
+
+                            &:hover {
+                                color: $brightMainColor;
+                                text-decoration-line: none;
+                            }
+                        }
+                    }
+                }
+
+                .v-note-edit {
+                    &.divarea-wrapper {
+                        flex: 1;
+                    }
+
+                    &::-webkit-scrollbar {
                         background-color: $componentBg !important;
                     }
-                    .content-input-wrapper{
-                        .content-input{
-                            .auto-textarea-input{
+
+                    .content-input-wrapper {
+                        .content-input {
+                            .auto-textarea-input {
                                 background-color: #00000000;
                                 color: $textColor;
                             }
                         }
                     }
                 }
-                .v-note-show{
+
+                .v-note-show {
+                    flex: 1;
                     color: $textColor;
-                    .v-show-content{
-                        &::-webkit-scrollbar{
+
+                    &.single-show {
+                        flex: 1;
+                    }
+
+                    .v-show-content {
+                        &::-webkit-scrollbar {
                             background-color: $componentBg !important;
                         }
-                        table{
-                            thead, tbody{
-                                tr{
+
+                        table {
+                            tbody {
+                                tr {
                                     background-color: $selectedComponent;
-                                    th, td{
+
+                                    th, td {
                                         border: 1px solid $borderColor;
                                         color: $textColor;
                                     }
-                                    &:nth-child(2n){
+
+                                    &:nth-child(2n) {
                                         background-color: $borderColor;
                                     }
                                 }
                             }
+
+                            thead {
+                                tr {
+                                    background-color: $componentBg;
+
+                                    th, td {
+                                        border: 1px solid $borderColor;
+                                        color: $textColor;
+                                    }
+                                }
+                            }
                         }
-                        img{
+
+                        img {
                             background-color: #00000000;
+                            max-height: 100vh;
                         }
-                        pre{
+
+                        pre {
                             background-color: $componentBg;
-                            code{
+
+                            code {
                                 background-color: #00000000;
                                 color: $textColor;
                             }
-                            .hljs{
-                                code{
+
+                            .hljs {
+                                code {
                                     background-color: #00000000;
                                     color: $textColor;
                                 }
                             }
                         }
-                        blockquote{
+
+                        blockquote {
                             border-left: .25em solid $mainColor;
                         }
-                        code{
+
+                        code {
                             background-color: $componentBg;
                             color: $mainColor;
                         }
-                        h1, h2{
+
+                        h1, h2 {
                             border-bottom: 1px solid $borderColor;
+                        }
+
+                        mark {
+                            background-color: $brightYellow;
+                        }
+
+                        ul {
+                            padding-left: 1rem;
+
+                            li {
+                                margin: 0 0 16px 0;
+                                list-style: none;
+                                background-position: 0 0.62em;
+                                padding-left: 28px;
+                                position: relative;
+                                height: 1.5rem;
+                            }
+
+                            li::before {
+                                content: "";
+                                display: block;
+                                height: 1px;
+                                width: 14px;
+                                background-color: $mainColor;
+                                position: absolute;
+                                top: 50%;
+                                left: 4px;
+                            }
+
+                            li[class]::before {
+                                display: none;
+                            }
                         }
                     }
                 }

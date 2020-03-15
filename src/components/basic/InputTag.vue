@@ -1,13 +1,13 @@
-<template lang="pug">
+<template>
 
 </template>
 
 <script>
     export default {
-        name: "Home"
+        name: "InputTag"
     }
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 
 </style>

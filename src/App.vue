@@ -20,7 +20,7 @@ body{
 }
 a{
     @include anime(.2s);
-    color:$brightYellow !important;
+    color: $brightBlue !important;
     &:hover{
         color: $mainColor !important;
     }
@@ -87,7 +87,7 @@ a{
         },
         methods: {
             async checkLogin() {
-                let res = await this.axios.get('/api/users/checkLogin');
+                let res = await this.axios.get('/blogApi/users/checkLogin');
                 this.$store.commit("setUserInfo", res.data.userInfo);
             }
         }

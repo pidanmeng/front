@@ -40,7 +40,7 @@
         },
         methods: {
             login(){
-                this.axios.post('/api/users/login',{
+                this.axios.post('/blogApi/users/login',{
                     userId: this.formUserId,
                     userPwd: this.formUserPwd
                 }).then((res)=>{
