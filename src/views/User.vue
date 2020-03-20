@@ -1,7 +1,5 @@
-
-
 <template lang="pug">
-    div
+    .Users
         SideBar.sideBar(v-bind="sideBarData", @sideBarClosed="sideBarClosed")
         router-view.content(:class="{fullDisplay: hideSideBar}")
     //p

@@ -79,7 +79,7 @@
             searchBar: {
                 type: Object,
                 default: () => {
-                    return{
+                    return {
                         search: query => {
                             console.log(query)
                         }
@@ -92,17 +92,20 @@
                     return [
                         {
                             groupName: "General",
-                            method: ()=> {},
+                            method: () => {
+                            },
                             groupItems: [
                                 {
                                     index: 1,
                                     itemName: "Posts",
                                     icon: "keyboard",
-                                    method: () => {},
+                                    method: () => {
+                                    },
                                     children: [
                                         {
                                             name: "Markdown Editor",
-                                            method: () => {}
+                                            method: () => {
+                                            }
                                         }
                                     ]
                                 }
@@ -110,29 +113,35 @@
                         },
                         {
                             groupName: "General",
-                            method: ()=> {},
+                            method: () => {
+                            },
                             groupItems: [
                                 {
                                     index: 2,
                                     itemName: "Posts",
                                     icon: "keyboard",
-                                    method: () => {},
+                                    method: () => {
+                                    },
                                     children: [
                                         {
                                             name: "Markdown Editor",
-                                            method: () => {}
+                                            method: () => {
+                                            }
                                         },
                                         {
                                             name: "Markdown Editor",
-                                            method: () => {}
+                                            method: () => {
+                                            }
                                         },
                                         {
                                             name: "Markdown Editor",
-                                            method: () => {}
+                                            method: () => {
+                                            }
                                         },
                                         {
                                             name: "Markdown Editor",
-                                            method: () => {}
+                                            method: () => {
+                                            }
                                         }
                                     ]
                                 }
@@ -140,17 +149,20 @@
                         },
                         {
                             groupName: "General",
-                            method: ()=> {},
+                            method: () => {
+                            },
                             groupItems: [
                                 {
                                     index: 3,
                                     itemName: "Posts",
                                     icon: "keyboard",
-                                    method: () => {},
+                                    method: () => {
+                                    },
                                     children: [
                                         {
                                             name: "Markdown Editor",
-                                            method: () => {}
+                                            method: () => {
+                                            }
                                         }
                                     ]
                                 }
@@ -161,48 +173,58 @@
             },
             icons: {
                 type: Array,
-                default:() => {
+                default: () => {
                     return [
                         {
                             name: "home",
-                            method: ()=>{ console.log("home")}
+                            method: () => {
+                                console.log("home")
+                            }
                         },
                         {
                             name: "bell",
-                            method: ()=>{ console.log("bell")}
+                            method: () => {
+                                console.log("bell")
+                            }
                         },
                         {
                             name: "cog",
-                            method: ()=>{ console.log("cog")}
+                            method: () => {
+                                console.log("cog")
+                            }
                         },
                         {
                             name: "power-off",
-                            method: ()=>{ console.log("power-off")}
+                            method: () => {
+                                console.log("power-off")
+                            }
                         },
                     ]
                 }
             }
         },
         methods: {
-            toggle(){
+            toggle() {
                 this.hide = !this.hide;
                 this.$emit('sideBarClosed', this.hide);
             },
-            switchIndex(index){
-                this.currentIndex = this.currentIndex===index? -1: index;
+            switchIndex(index) {
+                this.currentIndex = this.currentIndex === index ? -1 : index;
             }
         }
     }
 </script>
 
 <style scoped lang="scss">
-    .clickable{
+    .clickable {
         cursor: pointer;
     }
-    .hide{
+
+    .hide {
         transform: translateX(-120%);
     }
-    .nav{
+
+    .nav {
         @include anime(0.5s);
         position: fixed;
         display: flex;
@@ -213,87 +235,104 @@
         background-color: $componentBg;
         justify-content: center;
         align-items: center;
-        box-shadow:0.1rem 0 1rem 0 $shadowColor;
+        box-shadow: 0.1rem 0 1rem 0 $shadowColor;
         cursor: pointer;
-        &:hover{
+
+        &:hover {
             background-color: $selectedComponent;
             color: $blue;
-            svg{
-                filter: drop-shadow( 0 0 1rem $blue);
+
+            svg {
+                filter: drop-shadow(0 0 1rem $blue);
             }
         }
 
-     }
-    .sideBarItem{
+    }
+
+    .sideBarItem {
         @include anime(0.5s);
         height: 100%;
         color: $textColor;
         background-color: $componentBg;
-        box-shadow:0.1rem 0 1rem 0 $shadowColor;
+        box-shadow: 0.1rem 0 1rem 0 $shadowColor;
         display: flex;
         flex-direction: column;
         align-items: stretch;
         justify-content: space-between;
 
-        .sideBarHead{
+        .sideBarHead {
             flex: 0;
             display: flex;
             flex-direction: column;
             align-items: stretch;
-            .item{
+
+            .item {
                 border-bottom: 1px solid $borderColor;
                 padding: 1rem 2rem;
             }
-            .title{
+
+            .title {
                 font-weight: bold;
                 display: flex;
                 flex-direction: row;
                 justify-content: space-between;
                 align-items: center;
-                p{
+
+                p {
                     margin: 0;
                 }
-                .close{
+
+                .close {
                     @include anime(0.2s);
-                    &:hover{
+
+                    &:hover {
                         color: white;
                         transform: rotate(90deg);
                         cursor: pointer;
                     }
                 }
             }
-            .userInfo{
+
+            .userInfo {
                 display: flex;
                 flex-direction: row;
                 justify-content: flex-start;
                 align-items: center;
-                .face{
+
+                .face {
                     width: 60px;
                     height: 60px;
                     border-radius: 15%;
                 }
-                .info{
+
+                .info {
                     margin-left: 1rem;
-                    p{
+
+                    p {
                         margin: 0;
                         text-align: left;
-                        &.userName{
+
+                        &.userName {
                             font-weight: bold;
                         }
-                        &.userAuthority{
+
+                        &.userAuthority {
                             font-size: 0.7rem;
                         }
-                        &.userStatus{
+
+                        &.userStatus {
                             font-size: 0.7rem;
                         }
                     }
                 }
             }
-            .searchBar{
+
+            .searchBar {
                 display: flex;
-                .search{
+
+                .search {
                     flex: 1;
-                    padding-block: 0.7rem;
+                    padding: 0.7rem 0;
                     outline: 0;
                     border: 0;
                     color: $textColor;
@@ -303,7 +342,8 @@
                 }
             }
         }
-        .sideBarBody{
+
+        .sideBarBody {
             flex: 1;
             overflow-y: auto;
             display: flex;
@@ -311,17 +351,18 @@
             align-items: stretch;
             justify-content: flex-start;
 
-            .group{
+            .group {
                 display: flex;
                 align-items: stretch;
 
-                .block{
+                .block {
                     width: 100%;
                     display: flex;
                     flex-direction: column;
                     justify-content: flex-start;
                     align-items: stretch;
-                    .row{
+
+                    .row {
                         padding: 0.5rem 0;
                         display: flex;
                         flex-direction: row;
@@ -329,21 +370,26 @@
                         align-items: center;
                         flex: 1;
                     }
-                    p{
+
+                    p {
                         margin: 0;
                         font-weight: bold;
                     }
-                    .groupTitle{
-                         margin: 0 1rem;
+
+                    .groupTitle {
+                        margin: 0 1rem;
                     }
                 }
-                .groupItem{
+
+                .groupItem {
                     width: 100%;
                     display: flex;
                     flex-direction: column;
-                    .row, .block{
+
+                    .row, .block {
                         justify-content: space-between;
-                        i{
+
+                        i {
                             @include anime(0.2s);
                             width: 2rem;
                             height: 2rem;
@@ -354,64 +400,77 @@
                             border-radius: 20%;
                             background-color: $selectedComponent;
                         }
-                        p{
+
+                        p {
                             @include anime(0.2s);
                             font-weight: normal;
                             margin-left: 1rem;
                         }
-                        .arrow{
+
+                        .arrow {
 
                             @include anime(0.2s);
                         }
-                        .groupSubTitle{
+
+                        .groupSubTitle {
                             margin: 0 1rem;
-                            p{
+
+                            p {
                                 @include anime(.2s);
                             }
-                            i{
-                                svg{
+
+                            i {
+                                svg {
                                     @include anime(.2s);
                                 }
                             }
-                            &:hover{
-                                i{
-                                    svg{
+
+                            &:hover {
+                                i {
+                                    svg {
                                         @include animation(swing .5s);
                                         color: $mainColor;
                                         filter: drop-shadow(0 0 5px $mainColor);
                                     }
                                 }
-                                p{
+
+                                p {
                                     color: white;
                                 }
                             }
                         }
-                        .itemChild{
-                            div{
+
+                        .itemChild {
+                            div {
                                 @include anime(.2s);
                                 display: flex;
                                 align-items: center;
                                 justify-content: flex-start;
                                 padding-left: 2rem;
                             }
-                            &:hover{
-                                div{
+
+                            &:hover {
+                                div {
                                     letter-spacing: 3px;
                                 }
+
                                 background-color: $brightYellow;
                                 color: $componentBg;
                             }
                         }
                     }
-                    .showChildren{
-                        .arrow{
+
+                    .showChildren {
+                        .arrow {
                             transform: rotate(90deg);
                         }
-                        .itemChild{
+
+                        .itemChild {
                             height: 100%;
                         }
                     }
-                    .itemChild{
+
+                    .itemChild {
                         @include anime(background .2s);
                         background-color: $selectedComponent;
                         height: 0;
@@ -421,7 +480,8 @@
                 }
             }
         }
-        .sideBarFoot{
+
+        .sideBarFoot {
             flex: none;
             height: 2rem;
             display: flex;
@@ -431,14 +491,16 @@
             border-top: 1px solid $borderColor;
             background-color: $selectedComponent;
             box-shadow: 0 -1px 5px $shadowColor;
-            .icon{
+
+            .icon {
                 @include anime(.2s);
                 flex: 1;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 cursor: pointer;
-                &:hover{
+
+                &:hover {
                     background-color: $borderColor;
                 }
             }

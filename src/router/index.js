@@ -40,7 +40,7 @@ const routes = [
       {
         path: 'article_editor',
         name: 'article_editor',
-        component: ()=> import('@/components/MavonEditor')
+        component: ()=> import('@/views/Article')
       }
     ]
   }

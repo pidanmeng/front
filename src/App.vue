@@ -6,13 +6,12 @@
 <style lang="scss">
 @font-face {
     font-family: SiyuanHei;
-    src: url('./assets/SourceHanSansCN-Light-2.otf');
 }
 *{
     letter-spacing: 2px;
     &::selection{
         color: $selectionColor;
-        font-size: 0.1;
+        font-size: 1rem;
     }
 }
 body{

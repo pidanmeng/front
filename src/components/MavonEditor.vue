@@ -100,8 +100,7 @@
         .mavon {
             background-color: $selectedComponent;
             flex: 1;
-            margin: 5rem;
-
+            margin: 1rem;
             .v-note-op {
                 border-bottom: 1px solid $borderColor;
 
