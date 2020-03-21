@@ -98,9 +98,8 @@
         display: flex;
 
         .mavon {
-            background-color: $selectedComponent;
+            background-color: $componentBg;
             flex: 1;
-            margin: 1rem;
             .v-note-op {
                 border-bottom: 1px solid $borderColor;
 
@@ -116,7 +115,7 @@
 
                         &:hover {
                             color: $mainColor;
-                            background-color: $componentBg;
+                            background-color: $selectedComponent;
 
                             &::before {
                                 text-shadow: 0 0 5px $mainColor;
@@ -125,7 +124,7 @@
 
                         &.selected {
                             color: $mainColor;
-                            background-color: $componentBg;
+                            background-color: $selectedComponent;
 
                             &::before {
                                 text-shadow: 0 0 5px $mainColor;
@@ -134,11 +133,11 @@
 
                         .popup-dropdown {
                             box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
-                            background-color: $componentBg;
+                            background-color: $selectedComponent;
                             border-width: 0;
 
                             .dropdown-item {
-                                background-color: $selectedComponent;
+                                background-color: $componentBg;
 
                                 &:hover {
                                     color: $mainColor;
@@ -153,9 +152,9 @@
             .v-note-panel {
                 .v-note-navigation-wrapper {
                     position: static;
-                    background-color: $selectedComponent;
+                    background-color: $componentBg;
                     border: 0;
-                    box-shadow: -1px 0 12px $shadowColor;
+                    box-shadow: -1px 0 4px $shadowColor;
 
                     &.slideTop-enter {
                         width: 0;
@@ -174,7 +173,7 @@
 
                     .v-note-navigation-content {
                         &::-webkit-scrollbar {
-                            background-color: $componentBg !important;
+                            background-color: $selectedComponent !important;
                         }
 
                         color: $textColor;
@@ -197,7 +196,7 @@
                     }
 
                     &::-webkit-scrollbar {
-                        background-color: $componentBg !important;
+                        background-color: $selectedComponent !important;
                     }
 
                     .content-input-wrapper {
@@ -220,13 +219,13 @@
 
                     .v-show-content {
                         &::-webkit-scrollbar {
-                            background-color: $componentBg !important;
+                            background-color: $selectedComponent !important;
                         }
 
                         table {
                             tbody {
                                 tr {
-                                    background-color: $selectedComponent;
+                                    background-color: $componentBg;
 
                                     th, td {
                                         border: 1px solid $borderColor;
@@ -241,7 +240,7 @@
 
                             thead {
                                 tr {
-                                    background-color: $componentBg;
+                                    background-color: $selectedComponent;
 
                                     th, td {
                                         border: 1px solid $borderColor;
@@ -257,7 +256,7 @@
                         }
 
                         pre {
-                            background-color: $componentBg;
+                            background-color: $selectedComponent;
 
                             code {
                                 background-color: #00000000;
@@ -277,7 +276,7 @@
                         }
 
                         code {
-                            background-color: $componentBg;
+                            background-color: $selectedComponent;
                             color: $mainColor;
                         }
 
