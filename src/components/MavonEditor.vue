@@ -64,7 +64,6 @@
                     return res;
                 },
                 set(doc) {
-                    console.log(doc);
                 }
             }
         },
@@ -73,6 +72,11 @@
                 var data = new FormData();
                 data.append('smfile', $file);
                 data.append('ssl', true);
+                const loading = this.$loading({
+                    text: '正在上传图片…',
+                    lock: true,
+                    background: 'rgba(0, 0, 0, 0.7)'
+                });
                 this.axios.post(
                     '/smms/upload',
                     data
@@ -83,10 +87,29 @@
                     }else if ('success'===doc.data.code){
                         url = doc.data.data.url;
                     }
-                    console.log(this);
-                    this.$refs.editor.$img2Url(pos, url);
+                    if(!!url){
+                        this.$refs.editor.$img2Url(pos, url);
+                        this.$message({
+                            showClose: true,
+                            message: '图片上传成功',
+                            type: 'success'
+                        });
+                    }else{
+                        this.$message({
+                            showClose: true,
+                            message: `图片上传失败: ${doc.data.message}`,
+                            type: 'error'
+                        });
+                    }
                 }).catch(err=>{
-                    console.log(JSON.stringify(err))
+                    console.error(JSON.stringify(err));
+                    this.$message({
+                        showClose: true,
+                        message: `图片上传失败: ${err}`,
+                        type: 'error'
+                    });
+                }).finally(()=>{
+                    loading.close();
                 })
             }
         }
