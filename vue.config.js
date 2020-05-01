@@ -20,7 +20,6 @@ module.exports = {
                 headers: {
                     Referer: 'https://sm.ms'
                 }
-
             }
         },
         host: 'localhost',

@@ -7,7 +7,7 @@
                 el-form-item(label='Tags')
                     el-select(v-model="articleData.tags" :style="{width:'100%'}" allow-create filterable multiple default-first-option)
                         el-option(v-for='item in common.$tags' :key="item" :label="item" :value="item")
-            mavon-editor(:style="{flex:1}")
+            mavon-editor(:style="{flex:1}" v-model="articleData.md")
     //.content
 </template>
 
@@ -24,15 +24,25 @@
             return {
                 articleData: {
                     title: '',
-                    tags: '',
-                    notebook_id: ''
+                    tags: [],
+                    md:''
                 },
                 common
             }
         },
         computed: {
-            tag(){
-                return common
+            preMD(){
+                let res = '';
+                res += `# ${this.articleData.title}\n`;
+                let arr = this.articleData.tags.map(item=>{
+                    return `\`${item}\``;
+                });
+                if(arr.length>=1){
+                    res += arr.reduce((a,b)=>{
+                        return a+' '+b;
+                    });
+                }
+                return res;
             }
         },
         mounted() {

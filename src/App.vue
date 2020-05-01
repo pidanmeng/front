@@ -10,8 +10,9 @@
 *{
     letter-spacing: 2px;
     &::selection{
+        @include anime(.5s);
         color: $selectionColor;
-        font-size: 1rem;
+        background-color: $black;
     }
 }
 body{

@@ -1,3 +1,5 @@
+import axios from '@/utils/requests';
+import { Message } from "element-ui";
 
 const state = {
     _id: "",
@@ -9,7 +11,14 @@ const getters = {
 };
 
 const actions = {
-
+    login: function ({ commit }) {
+        axios.get('/users').then(res=>{
+            Message({
+                message: '登录成功',
+                type: 'success'
+            });
+        })
+    }
 };
 
 const mutations = {

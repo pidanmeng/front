@@ -15,12 +15,14 @@ export default {
   },
   methods:{
       get:function(){
-          this.axios.get('/blogApi/users')
-              .then(res=>{
-                  console.log(res)
-              })
+          this.axios.get('/blogApi/users').then(res=>{
+              console.log(res)
+          })
       }
-  }
+  },
+    mounted() {
+      this.$store.dispatch('login');
+    }
 }
 </script>
 

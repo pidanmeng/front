@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import userStatus from './StoreUserStatus'
+import userStatus from './Modules/UserStatus'
 
 Vue.use(Vuex);
 

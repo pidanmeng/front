@@ -11,6 +11,16 @@
     export default {
         name: "MavonEditor",
         components: {mavonEditor},
+        model:{
+            prop: 'md',
+            event: 'mdChange',
+        },
+        props: {
+            md: {
+                type: String,
+                default: ''
+            },
+        },
         data: () => {
             return {
                 title: 'Title',
@@ -50,22 +60,20 @@
                         subfield: true, // 单双栏模式
                         preview: true, // 预览
                     }
-                }
+                },
+                doc: ''
             }
         },
-        computed: {
-            doc: {
-                get() {
-                    let res = `# ${this.title}\n`;
-                    for (var i of this.tag) {
-                        res += `\`${i}\``;
-                    }
-                    res += '\n';
-                    return res;
-                },
-                set(doc) {
-                }
-            }
+        watch: {
+            doc: function(val, oldVal){
+                this.$emit('mdChange', val);
+            },
+            md: function (val) {
+                this.doc = val;
+            },
+        },
+        mounted() {
+            this.doc = this.md;
         },
         methods: {
             $imgAdd(pos, $file) {
